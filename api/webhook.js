@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
             
 
             // Handle /start or /game command
-            if (update.message && (update.message.text === '/testGame' || update.message.text === `/testGame@${botUsername}`)) {
+            if (update.message && (update.message.text === '/testgame' || update.message.text === `/testgame@${botUsername}`)) {
                 //const chatId = update.message.from.id; //DM
                 const chatId = update.message.chat.id; //group respond
                 const firstName = update.message.from.first_name;
@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
             }
 
             // Handle /start
-            if (update.message && update.message.text === '/startTest') {
+            if (update.message && update.message.text === '/teststart') {
                 const chatId = update.message.chat.id;
                 const firstName = update.message.from.first_name;
                             
