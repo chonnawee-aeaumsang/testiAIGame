@@ -4,6 +4,7 @@ const TOKEN = "7784233435:AAElh1jUghg5Nbuh22mprl1xPq8BvTYzTQg";
 const gameName = "testiaigame"; // Replace with your game's short name
 const gameUrl = "https://testi-ai-game.vercel.app/"; // Your game URL
 const imageUrl = "https://imgur.com/ZGgcA9c";// url images
+const gameImageUrl = "https://imgur.com/a/iaigamelogo-cy4PJvU";
 
 const botUsername = 'testiAIGame_bot';
 
@@ -59,7 +60,8 @@ module.exports = async (req, res) => {
                 // await bot.sendGame(chatId, gameName);
 
                 // Send a message with a button to play the game, using a direct URL
-                await bot.sendMessage(chatId, "Click below to play the game with email:", {
+                await bot.sendPhoto(chatId,gameImageUrl,  {
+                    caption: "Click below to play the game with email:",
                     reply_markup: {
                         inline_keyboard: [[{
                             text: "Play game with email",
