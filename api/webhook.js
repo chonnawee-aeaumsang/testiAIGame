@@ -24,39 +24,49 @@ module.exports = async (req, res) => {
             //         await bot.sendMessage(chatId, `Welcome, ${firstName}! Let's play ${gameName}. You can type /game to start.`);
             //     }
             // }
-            
+
             //Handle /help command to provide a tutorial
             //if (update.message && update.message.text === '/help') {
-                //const chatId = update.message.from.id;
+            //const chatId = update.message.from.id;
 
-                // Use the URL to the image hosted on Vercel
-                //const helpImageUrl = "https://i-ai-robot-build.vercel.app/images/Tutorial1_converted.jpg";  // Replace with your actual Vercel URL
-            
-                // Send the image with a caption
-                //await bot.sendPhoto(chatId, helpImageUrl, {
-                    //caption: `*Here’s how to play ${gameName}:*\n\n*You can start the game by typing \\/game or \\/start\\.*`,
-                    //parse_mode: 'MarkdownV2'  // Using MarkdownV2 with correct escaping
-                //});
+            // Use the URL to the image hosted on Vercel
+            //const helpImageUrl = "https://i-ai-robot-build.vercel.app/images/Tutorial1_converted.jpg";  // Replace with your actual Vercel URL
+
+            // Send the image with a caption
+            //await bot.sendPhoto(chatId, helpImageUrl, {
+            //caption: `*Here’s how to play ${gameName}:*\n\n*You can start the game by typing \\/game or \\/start\\.*`,
+            //parse_mode: 'MarkdownV2'  // Using MarkdownV2 with correct escaping
+            //});
             //}
-            
+
 
             // Handle /start or /game command
-            if (update.message && (update.message.text === '/testgame' || update.message.text === `/testgame@${botUsername}`)) {
+            if (update.message && (update.message.text === '/playwithemail')) {
                 //const chatId = update.message.from.id; //DM
                 const chatId = update.message.chat.id; //group respond
-                const firstName = update.message.from.first_name;
-                
-                await bot.sendMessage(chatId, `Welcome, ${firstName}! Let's play ${gameName}.`);
-                await bot.sendGame(chatId, gameName);
+                // const firstName = update.message.from.first_name;
+
+                // await bot.sendMessage(chatId, `Welcome, ${firstName}! Let's play ${gameName}.`);
+                // await bot.sendGame(chatId, gameName);
+
+                // Send a message with a button to play the game, using a direct URL
+                await bot.sendMessage(chatId, "Click below to play the game with email:", {
+                    reply_markup: {
+                        inline_keyboard: [[{
+                            text: "Play game with email",
+                            url: gameUrl // Opens directly in Telegram’s in-app browser without permission prompts
+                        }]]
+                    }
+                });
             }
 
             // Handle /start
             if (update.message && update.message.text === '/teststart') {
                 const chatId = update.message.chat.id;
                 const firstName = update.message.from.first_name;
-                            
-    // Escape necessary characters for MarkdownV2
-    const welcomeMessage = `🎮 *Welcome to the iAI Robot Game\\!* 🚀
+
+                // Escape necessary characters for MarkdownV2
+                const welcomeMessage = `🎮 *Welcome to the iAI Robot Game\\!* 🚀
 A fun Telegram game where you collect iAI tokens, upgrade your strategy, and compete for rewards\\! 💰
 
 *How to Play*  
@@ -72,13 +82,13 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
 
 *Ready to play?* Hit "/testgame" and start earning\\! 🔥`;
 
-    try {
-        // Send the welcome image with a caption
-        await bot.sendPhoto(chatId, imageUrl);
-        await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'MarkdownV2' });
-    } catch (error) {
-        console.error("Error sending welcome message:", error);
-    }
+                try {
+                    // Send the welcome image with a caption
+                    await bot.sendPhoto(chatId, imageUrl);
+                    await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'MarkdownV2' });
+                } catch (error) {
+                    console.error("Error sending welcome message:", error);
+                }
 
                 //await bot.sendGame(update.message.from.id, gameName);
             }
@@ -91,7 +101,7 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
                     const query_id = update.callback_query.id;
                     const firstName = update.callback_query.from.first_name;
                     const userID = update.callback_query.from.id;
-                    await bot.answerCallbackQuery({callback_query_id: query_id, url: gameUrl + `?query_id=${query_id}&id=${userID}&first_name=${firstName}`});
+                    await bot.answerCallbackQuery({ callback_query_id: query_id, url: gameUrl + `?query_id=${query_id}&id=${userID}&first_name=${firstName}` });
                 }
             }
             // Ensure response is sent only once
