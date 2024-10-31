@@ -10,10 +10,6 @@ const botUsername = 'testiAIGame_bot';
 
 const bot = new TelegramBot(TOKEN, { polling: false });
 
-// Access user data
-const userId = Telegram.WebApp.initDataUnsafe?.user?.id;
-console.log("User's Telegram ID:", userId);
-
 module.exports = async (req, res) => {
     if (req.method === 'POST') {
         const update = req.body;
