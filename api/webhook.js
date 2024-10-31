@@ -10,6 +10,10 @@ const botUsername = 'testiAIGame_bot';
 
 const bot = new TelegramBot(TOKEN, { polling: false });
 
+// Access user data
+const userId = Telegram.WebApp.initDataUnsafe?.user?.id;
+console.log("User's Telegram ID:", userId);
+
 module.exports = async (req, res) => {
     if (req.method === 'POST') {
         const update = req.body;
@@ -44,10 +48,10 @@ module.exports = async (req, res) => {
             if (update.message && (update.message.text === '/testgame')) {
                 //const chatId = update.message.from.id; //DM
                 const chatId = update.message.chat.id; //group respond
-                 const firstName = update.message.from.first_name;
+                const firstName = update.message.from.first_name;
 
-                 await bot.sendMessage(chatId, `Welcome, ${firstName}! Let's play ${gameName}.`);
-                 await bot.sendGame(chatId, gameName);
+                await bot.sendMessage(chatId, `Welcome, ${firstName}! Let's play ${gameName}.`);
+                await bot.sendGame(chatId, gameName);
             }
 
             // Handle /start or /game command
@@ -60,7 +64,7 @@ module.exports = async (req, res) => {
                 // await bot.sendGame(chatId, gameName);
 
                 // Send a message with a button to play the game, using a direct URL
-                await bot.sendPhoto(chatId,gameImageUrl,  {
+                await bot.sendPhoto(chatId, gameImageUrl, {
                     caption: "Click below to play the game with email:",
                     reply_markup: {
                         inline_keyboard: [[{
