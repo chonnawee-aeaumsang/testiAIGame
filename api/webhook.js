@@ -8,6 +8,9 @@ const gameImageUrl = "https://imgur.com/a/iaigamelogo-cy4PJvU";
 
 const botUsername = 'testiAIGame_bot';
 
+const currentUserId = telegramUserId; // get user ID from Telegram message
+const storedUserId = localStorage.getItem('user_id');
+
 const bot = new TelegramBot(TOKEN, { polling: false });
 
 module.exports = async (req, res) => {
@@ -39,6 +42,13 @@ module.exports = async (req, res) => {
             //parse_mode: 'MarkdownV2'  // Using MarkdownV2 with correct escaping
             //});
             //}
+
+            if (storedUserId !== currentUserId) {
+                // Clear local storage or reset necessary data
+                localStorage.clear();
+                localStorage.setItem('user_id', currentUserId);
+            }
+
 
             // Handle /start or /game command
             if (update.message && (update.message.text === '/testgame')) {
@@ -103,44 +113,6 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
 
                 //await bot.sendGame(update.message.from.id, gameName);
             }
-
-            bot.onText(/\/start/, (msg) => {
-                const chatId = msg.chat.id;
-                
-                const options = {
-                    reply_markup: {
-                        inline_keyboard: [
-                            [{ text: "What are your hours? ⏰", callback_data: 'hours' }],
-                            [{ text: "Can I track my order? 📦", callback_data: 'track_order' }],
-                            [{ text: "How do I report a problem?", callback_data: 'report_problem' }]
-                        ]
-                    }
-                };
-            
-                bot.sendMessage(chatId, 'How can I help you?', options);
-            });
-            
-            bot.on('callback_query', (query) => {
-                const chatId = query.message.chat.id;
-            
-                let responseText;
-                switch (query.data) {
-                    case 'hours':
-                        responseText = 'Our hours are from 9 AM to 5 PM.';
-                        break;
-                    case 'track_order':
-                        responseText = 'You can track your order by clicking [here](https://yourtrackinglink.com).';
-                        break;
-                    case 'report_problem':
-                        responseText = 'Please describe your issue, and we will assist you shortly.';
-                        break;
-                    default:
-                        responseText = 'I\'m not sure how to help with that.';
-                }
-            
-                bot.sendMessage(chatId, responseText, { parse_mode: 'Markdown' });
-                bot.answerCallbackQuery(query.id); // Acknowledge the callback
-            });
 
             // Handle callback query for the Play button
             if (update.callback_query) {
