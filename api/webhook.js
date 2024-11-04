@@ -8,10 +8,14 @@ const gameImageUrl = "https://imgur.com/a/iaigamelogo-cy4PJvU";
 
 const botUsername = 'testiAIGame_bot';
 
-const currentUserId = telegramUserId; // get user ID from Telegram message
-const storedUserId = localStorage.getItem('user_id');
-
 const bot = new TelegramBot(TOKEN, { polling: false });
+
+const currentUserId = telegramUserId;
+const storedUserId = localStorage.getItem('user_id');
+if (storedUserId !== currentUserId) {
+    localStorage.clear();
+    localStorage.setItem('user_id', currentUserId);
+}
 
 module.exports = async (req, res) => {
     if (req.method === 'POST') {
@@ -42,13 +46,6 @@ module.exports = async (req, res) => {
             //parse_mode: 'MarkdownV2'  // Using MarkdownV2 with correct escaping
             //});
             //}
-
-            if (storedUserId !== currentUserId) {
-                // Clear local storage or reset necessary data
-                localStorage.clear();
-                localStorage.setItem('user_id', currentUserId);
-            }
-
 
             // Handle /start or /game command
             if (update.message && (update.message.text === '/testgame')) {
