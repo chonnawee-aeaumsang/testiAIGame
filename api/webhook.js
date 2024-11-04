@@ -2,7 +2,10 @@ const TelegramBot = require("node-telegram-bot-api");
 
 const TOKEN = "7784233435:AAElh1jUghg5Nbuh22mprl1xPq8BvTYzTQg";
 const gameName = "testiaigame"; // Replace with your game's short name
-const gameUrl = "https://testi-ai-game.vercel.app/"; // Your game URL
+//const gameUrl = "https://testi-ai-game.vercel.app/"; // Your game URL
+
+const gameUrl = `https://testi-ai-game.vercel.app/index.html?cache_bust=${Date.now()}`;
+
 const imageUrl = "https://imgur.com/ZGgcA9c";// url images
 const gameImageUrl = "https://imgur.com/a/iaigamelogo-cy4PJvU";
 
