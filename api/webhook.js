@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
                         keyboard: [
                             [{ text: 'How to play' }],
                             [{ text: 'Game Rules' }],
-                            [{ text: 'Contact Support' }]
+                            [{ text: 'Contact Support' }],
                             [{ text: 'FAQ' }]
                         ],
                         resize_keyboard: true, // Adjusts the keyboard to the optimal size
