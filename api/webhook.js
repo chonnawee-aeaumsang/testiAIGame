@@ -58,12 +58,13 @@ module.exports = async (req, res) => {
                             [{ text: 'How to play' }],
                             [{ text: 'Game Rules' }],
                             [{ text: 'Contact Support' }]
+                            [{ text: 'FAQ' }]
                         ],
                         resize_keyboard: true, // Adjusts the keyboard to the optimal size
                         one_time_keyboard: true // Hides the keyboard after a button is pressed
                 }
             };
-            await bot.sendMessage(chatId, `What can i helps you.`, option);
+            await bot.sendMessage(chatId, `What can i helps you? .`, option);
         }
 
             // Handle /start or /game command
