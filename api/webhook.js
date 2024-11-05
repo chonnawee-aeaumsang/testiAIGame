@@ -77,6 +77,8 @@ module.exports = async (req, res) => {
                     bot.sendMessage(chatId, 'DEF:...');
                 } else if (message.text === '3') {
                     bot.sendMessage(chatId, 'GHI:...');
+                } else if (message.text === '4') {
+                    bot.sendMessage(chatId, 'JKL:...');
                 }
             });
 
