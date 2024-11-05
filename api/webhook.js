@@ -50,6 +50,22 @@ module.exports = async (req, res) => {
             //});
             //}
 
+            if (update.message && (update.message.text === '/help')){
+                const chatId = update.message.id;
+                const option = {
+                    reply_markup: {
+                        keyboard: [
+                            [{ text: 'How to play' }],
+                            [{ text: 'Game Rules' }],
+                            [{ text: 'Contact Support' }]
+                        ],
+                        resize_keyboard: true, // Adjusts the keyboard to the optimal size
+                        one_time_keyboard: true // Hides the keyboard after a button is pressed
+                }
+            }
+            await bot.sendMessage(chatId, `What can i helps you.`, option);
+        }
+
             // Handle /start or /game command
             if (update.message && (update.message.text === '/testgame')) {
                 //const chatId = update.message.from.id; //DM
