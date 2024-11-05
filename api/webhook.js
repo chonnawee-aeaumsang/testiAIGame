@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
             //}
 
             if (update.message && (update.message.text === '/help')){
-                const chatId = update.chat.id;
+                const chatId = update.message.chat.id;
                 const option = {
                     reply_markup: {
                         keyboard: [
