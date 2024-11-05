@@ -55,10 +55,10 @@ module.exports = async (req, res) => {
                 const option = {
                     reply_markup: {
                         keyboard: [
-                            [{ text: 'How to play' }],
-                            [{ text: 'Game Rules' }],
-                            [{ text: 'Contact Support' }],
-                            [{ text: 'FAQ' }]
+                            [{ text: '1' }],
+                            [{ text: '2' }],
+                            [{ text: '3' }],
+                            [{ text: '4' }]
                         ],
                         resize_keyboard: true, // Adjusts the keyboard to the optimal size
                         one_time_keyboard: true // Hides the keyboard after a button is pressed
@@ -66,6 +66,19 @@ module.exports = async (req, res) => {
             };
             await bot.sendMessage(chatId, `What can i helps you? .`, option);
         }
+
+            // Handle responses after clicking buttons
+            bot.on('message', (message) => {
+                const chatId = update.message.chat.id;
+
+                if (message.text === '1') {
+                    bot.sendMessage(chatId, 'ABC:...');
+                } else if (message.text === '2') {
+                    bot.sendMessage(chatId, 'DEF:...');
+                } else if (message.text === '3') {
+                    bot.sendMessage(chatId, 'GHI:...');
+                }
+            });
 
             // Handle /start or /game command
             if (update.message && (update.message.text === '/testgame')) {
