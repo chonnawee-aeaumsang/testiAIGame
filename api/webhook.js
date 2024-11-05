@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
 
             // Handle responses after clicking buttons
             bot.on('message', (message) => {
-                const chatId = update.message.chat.id;
+                const chatId = message.chat.id;
 
                 if (message.text === '1') {
                     bot.sendMessage(chatId, 'ABC:...');
