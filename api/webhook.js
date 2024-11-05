@@ -50,9 +50,26 @@ module.exports = async (req, res) => {
             //});
             //}
 
-            if (update.message && (update.message.text === '/help')){
-                const chatId = update.message.chat.id;
-                const option = {
+        //     if (update.message && (update.message.text === '/help')){
+        //         const chatId = update.message.chat.id;
+        //         const option = {
+        //             reply_markup: {
+        //                 keyboard: [
+        //                     [{ text: '1' }],
+        //                     [{ text: '2' }],
+        //                     [{ text: '3' }],
+        //                     [{ text: '4' }]
+        //                 ],
+        //                 resize_keyboard: true, // Adjusts the keyboard to the optimal size
+        //                 one_time_keyboard: true // Hides the keyboard after a button is pressed
+        //         }
+        //     };
+        //     await bot.sendMessage(chatId, `What can i helps you? .`, option);
+        // }
+
+            bot.onText(/\/help/, (msg) => {
+                const chatId = msg.chat.id;
+                const options = {
                     reply_markup: {
                         keyboard: [
                             [{ text: '1' }],
@@ -60,12 +77,13 @@ module.exports = async (req, res) => {
                             [{ text: '3' }],
                             [{ text: '4' }]
                         ],
-                        resize_keyboard: true, // Adjusts the keyboard to the optimal size
+                        resize_keyboard: true, // Adjusts the keyboard to fit the buttons
                         one_time_keyboard: true // Hides the keyboard after a button is pressed
-                }
-            };
-            await bot.sendMessage(chatId, `What can i helps you? .`, option);
-        }
+                    }
+                };
+
+                bot.sendMessage(chatId, "What can I help you with?", options);
+            });
 
             // Handle responses after clicking buttons
             bot.on('message', (message) => {
