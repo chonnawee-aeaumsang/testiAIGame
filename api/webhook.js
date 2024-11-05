@@ -13,12 +13,12 @@ const botUsername = 'testiAIGame_bot';
 
 const bot = new TelegramBot(TOKEN, { polling: false });
 
-const currentUserId = telegramUserId;
-const storedUserId = localStorage.getItem('user_id');
-if (storedUserId !== currentUserId) {
-    localStorage.clear();
-    localStorage.setItem('user_id', currentUserId);
-}
+// const currentUserId = telegramUserId;
+// const storedUserId = localStorage.getItem('user_id');
+// if (storedUserId !== currentUserId) {
+//     localStorage.clear();
+//     localStorage.setItem('user_id', currentUserId);
+// }
 
 module.exports = async (req, res) => {
     if (req.method === 'POST') {
@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
             //}
 
             if (update.message && (update.message.text === '/help')){
-                const chatId = update.message.id;
+                const chatId = update.chat.id;
                 const option = {
                     reply_markup: {
                         keyboard: [
@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
                         resize_keyboard: true, // Adjusts the keyboard to the optimal size
                         one_time_keyboard: true // Hides the keyboard after a button is pressed
                 }
-            }
+            };
             await bot.sendMessage(chatId, `What can i helps you.`, option);
         }
 
