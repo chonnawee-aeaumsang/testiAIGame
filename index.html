@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | iAI Clicker</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico?id=1.4.3">
-    <link rel="stylesheet" href="TemplateData/style.css?id=1.4.3">
-    <link rel="manifest" href="manifest.webmanifest?id=1.4.3">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico?id=1.4.8">
+    <link rel="stylesheet" href="TemplateData/style.css?id=1.4.8">
+    <link rel="manifest" href="manifest.webmanifest?id=1.4.8">
     <script src="https://telegram.org/js/telegram-web-app.js"> onload="onTelegramWebAppLoaded()"</script>
     <script>
       function onTelegramWebAppLoaded() {
@@ -64,15 +64,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/iAI-1.4.3.loader.js?id=1.4.3";
+      var loaderUrl = buildUrl + "/iaiteststyle.loader.js?id=1.4.8";
       var config = {
-        dataUrl: buildUrl + "/iAI-1.4.3.data?id=1.4.3",
-        frameworkUrl: buildUrl + "/iAI-1.4.3.framework.js?id=1.4.3",
-        codeUrl: buildUrl + "/iAI-1.4.3.wasm?id=1.4.3",
+        dataUrl: buildUrl + "/iaiteststyle.data?id=1.4.8",
+        frameworkUrl: buildUrl + "/iaiteststyle.framework.js?id=1.4.8",
+        codeUrl: buildUrl + "/iaiteststyle.wasm?id=1.4.8",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "iAI",
         productName: "iAI Clicker",
-        productVersion: "1.4.3",
+        productVersion: "1.4.8",
         showBanner: unityShowBanner,
       };
 
@@ -91,19 +91,20 @@
         document.getElementsByTagName('head')[0].appendChild(meta);
       }
 
+      canvas.style.background = "url('" + buildUrl + "/iaiteststyle.jpg') center / cover";
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((unityInstance) => {
-          loadingBar.style.display = "none";
-        }).catch((message) => {
-          alert(message);
-        });
-      };
+      //   createUnityInstance(canvas, config, (progress) => {
+      //     progressBarFull.style.width = 100 * progress + "%";
+      //   }).then((unityInstance) => {
+      //     loadingBar.style.display = "none";
+      //   }).catch((message) => {
+      //     alert(message);
+      //   });
+      // };
       document.body.appendChild(script);
     </script>
   </body>
