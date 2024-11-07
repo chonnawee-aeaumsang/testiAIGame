@@ -70,11 +70,11 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/iAitemplate.loader.js?id=1.4.8";
+    var loaderUrl = buildUrl + "/iaistyle.loader.js?id=1.4.8";
     var config = {
-      dataUrl: buildUrl + "/iAitemplate.data?id=1.4.8",
-      frameworkUrl: buildUrl + "/iAitemplate.framework.js?id=1.4.8",
-        codeUrl: buildUrl + "/iAitemplate.wasm?id=1.4.8",
+      dataUrl: buildUrl + "/iaistyle.data?id=1.4.8",
+      frameworkUrl: buildUrl + "/iaistyle.framework.js?id=1.4.8",
+        codeUrl: buildUrl + "/iaistyle.wasm?id=1.4.8",
         streamingAssetsUrl: "StreamingAssets",
       companyName: "iAI",
     productName: { { { JSON.stringify(PRODUCT_NAME) } } },
@@ -97,7 +97,7 @@
       document.getElementsByTagName('head')[0].appendChild(meta);
     }
 
-    canvas.style.background = "url('" + buildUrl + "/iAitemplate.jpg') center / cover";
+    canvas.style.background = "url('" + buildUrl + "/iaistyle.jpg') center / cover";
     loadingBar.style.display = "block";
 
     var script = document.createElement("script");
