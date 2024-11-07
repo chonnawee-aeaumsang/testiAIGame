@@ -29,6 +29,7 @@
         </div>
       </div>
     </div>
+
     <div id="unity-warning"></div>
   </div>
   <script>
@@ -69,15 +70,15 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/iaistyle.loader.js?id=1.4.8";
+    var loaderUrl = buildUrl + "/testBuild.loader.js?id=1.4.8";
     var config = {
-      dataUrl: buildUrl + "/iaistyle.data?id=1.4.8",
-      frameworkUrl: buildUrl + "/iaistyle.framework.js?id=1.4.8",
-        codeUrl: buildUrl + "/iaistyle.wasm?id=1.4.8",
+      dataUrl: buildUrl + "/testBuild.data?id=1.4.8",
+      frameworkUrl: buildUrl + "/testBuild.framework.js?id=1.4.8",
+        codeUrl: buildUrl + "/testBuild.wasm?id=1.4.8",
         streamingAssetsUrl: "StreamingAssets",
       companyName: "iAI",
-    productName: "iAI Clicker",
-    productVersion: "1.4.8",
+    productName: { { { JSON.stringify(PRODUCT_NAME) } } },
+    productVersion: { { { JSON.stringify(PRODUCT_VERSION) } } },
     showBanner: unityShowBanner,
       };
 
@@ -96,7 +97,6 @@
       document.getElementsByTagName('head')[0].appendChild(meta);
     }
 
-    canvas.style.background = "url('" + buildUrl + "/iaistyle.jpg') center / cover";
     loadingBar.style.display = "block";
 
     var script = document.createElement("script");
