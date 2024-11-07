@@ -21,8 +21,7 @@
   <div id="unity-container">
     <canvas id="unity-canvas"></canvas>
     <canvas id="iai-canvas" width=390 height=844 tabindex="-1"></canvas>
-    <!-- Center Content Wrapper -->
-    <div id="center-content">
+    <div id="center-element">
       <div id="iai-logo"></div>
       <div id="unity-loading-bar">
         <div id="unity-progress-bar-empty">
@@ -71,11 +70,11 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/iaitemplatetest.loader.js?id=1.4.8";
+    var loaderUrl = buildUrl + "/iaistyleedit.loader.js?id=1.4.8";
     var config = {
-      dataUrl: buildUrl + "/iaitemplatetest.data?id=1.4.8",
-      frameworkUrl: buildUrl + "/iaitemplatetest.framework.js?id=1.4.8",
-        codeUrl: buildUrl + "/iaitemplatetest.wasm?id=1.4.8",
+      dataUrl: buildUrl + "/iaistyleedit.data?id=1.4.8",
+      frameworkUrl: buildUrl + "/iaistyleedit.framework.js?id=1.4.8",
+        codeUrl: buildUrl + "/iaistyleedit.wasm?id=1.4.8",
         streamingAssetsUrl: "StreamingAssets",
       companyName: "iAI",
     productName: { { { JSON.stringify(PRODUCT_NAME) } } },
@@ -98,7 +97,7 @@
       document.getElementsByTagName('head')[0].appendChild(meta);
     }
 
-    canvas.style.background = "url('" + buildUrl + "/iaitemplatetest.jpg') center / cover";
+    canvas.style.background = "url('" + buildUrl + "/iaistyleedit.jpg') center / cover";
     loadingBar.style.display = "block";
 
     var script = document.createElement("script");
