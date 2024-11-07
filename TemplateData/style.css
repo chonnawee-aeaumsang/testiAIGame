@@ -1,9 +1,9 @@
 body { padding: 0; margin: 0 }
 #unity-container { position: fixed; width: 100%; height: 100%; }
-#unity-canvas { width: 380px; height: 580px; background: url('BG--Loading.png') no-repeat center center; background-size:cover;}
-#iai-canvas { width: 390px; height: 844px; background: url('BG--Loading.png')}
+#unity-canvas { width: 100vw; height: 100vh; position: absolute; background: url('BG--Loading.png') no-repeat center center; background-size:cover;z-index: 1;}
+#iai-canvas { width: 100vw; height: 100vh; position: absolute; background: url('iAIRobot.png') no-repeat center center; background-size:cover; z-index: 2;}
 #unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none }
-#unity-logo { width: 154px; height: 130px; background: url('iAI - Logo.png') no-repeat center }
+#unity-logo { width: 242px; height: 130px; background: url('iAI - Logo.png') no-repeat center }
 #iai-logo { width: 154px; height: 130px; background: url('iAI - Logo.png') no-repeat center }
 #unity-progress-bar-empty { margin-left: auto; margin-right: auto; width: 242px; height: 21px; margin-top: 10px; background: url('Loading--Panel.png') no-repeat center }
 #unity-progress-bar-full { width: 0%; height: 21px; margin-top: 10px; background: url('LoadingFill.png') no-repeat center }
