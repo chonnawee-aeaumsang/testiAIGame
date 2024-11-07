@@ -70,11 +70,11 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/iaistyletest.loader.js?id=1.4.8";
+    var loaderUrl = buildUrl + "/buildtestStyle.loader.js?id=1.4.8";
     var config = {
-      dataUrl: buildUrl + "/iaistyletest.data?id=1.4.8",
-      frameworkUrl: buildUrl + "/iaistyletest.framework.js?id=1.4.8",
-        codeUrl: buildUrl + "/iaistyletest.wasm?id=1.4.8",
+      dataUrl: buildUrl + "/buildtestStyle.data?id=1.4.8",
+      frameworkUrl: buildUrl + "/buildtestStyle.framework.js?id=1.4.8",
+        codeUrl: buildUrl + "/buildtestStyle.wasm?id=1.4.8",
         streamingAssetsUrl: "StreamingAssets",
       companyName: "iAI",
     productName: { { { JSON.stringify(PRODUCT_NAME) } } },
@@ -97,20 +97,20 @@
       document.getElementsByTagName('head')[0].appendChild(meta);
     }
 
-    canvas.style.background = "url('" + buildUrl + "/iaistyletest.jpg') center / cover";
+    canvas.style.background = "url('" + buildUrl + "/buildtestStyle.jpg') center / cover";
     loadingBar.style.display = "block";
 
     var script = document.createElement("script");
     script.src = loaderUrl;
     script.onload = () => {
-      //   createUnityInstance(canvas, config, (progress) => {
-      //     progressBarFull.style.width = 100 * progress + "%";
-      //   }).then((unityInstance) => {
-      //     loadingBar.style.display = "none";
-      //   }).catch((message) => {
-      //     alert(message);
-      //   });
-      // };
+         createUnityInstance(canvas, config, (progress) => {
+           progressBarFull.style.width = 100 * progress + "%";
+         }).then((unityInstance) => {
+           loadingBar.style.display = "none";
+         }).catch((message) => {
+           alert(message);
+         });
+      };
       document.body.appendChild(script);
   </script>
 </body>
