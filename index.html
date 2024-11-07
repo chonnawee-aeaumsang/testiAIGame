@@ -77,8 +77,8 @@
         codeUrl: buildUrl + "/testBuild.wasm?id=1.4.8",
         streamingAssetsUrl: "StreamingAssets",
       companyName: "iAI",
-    productName: "iAI Clicker",
-    productVersion: "1.4.8",
+    productName: { { { JSON.stringify(PRODUCT_NAME) } } },
+    productVersion: { { { JSON.stringify(PRODUCT_VERSION) } } },
     showBanner: unityShowBanner,
       };
 
