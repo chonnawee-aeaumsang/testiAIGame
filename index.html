@@ -40,6 +40,7 @@
     });
 
     var container = document.querySelector("#unity-container");
+    var canvasiai = document.querySelector("#iai-canvas");
     var canvas = document.querySelector("#unity-canvas");
     var logo = document.querySelector("#iai-logo");
     var loadingBar = document.querySelector("#unity-loading-bar");
@@ -103,14 +104,15 @@
     var script = document.createElement("script");
     script.src = loaderUrl;
     script.onload = () => {
-         /*createUnityInstance(canvas, config, (progress) => {
+         createUnityInstance(canvas, config, (progress) => {
            progressBarFull.style.width = 100 * progress + "%";
          }).then((unityInstance) => {
+           canvasiai.style.display= "none";
            logo.style.display= "none";
            loadingBar.style.display = "none";
          }).catch((message) => {
            alert(message);
-         });*/
+         });
       };
       document.body.appendChild(script);
   </script>
