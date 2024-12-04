@@ -155,11 +155,7 @@ Prizes are distributed according to the T&amp;C of the project.
 ———————————— 
 🤖 iAI – Where AI, Web3, and sustainability meet to create smarter, greener solutions for the future! 
 
-<a href="https://t.me/iai_announcement">Telegram</a> | 
-<a href="https://x.com/iai_center?s=21">X</a> | 
-<a href="https://discord.com/invite/cWFdnHCaAd">Discord</a> | 
-<a href="https://www.facebook.com/profile.php?id=61566167991648&amp;mibextid=LQQJ4d">Facebook</a> | 
-<a href="https://zealy.io/cw/iai/questboard">QuestsFullname</a>`;
+<a href="https://t.me/iai_announcement">Telegram</a> | <a href="https://x.com/iai_center?s=21">X</a> | <a href="https://discord.com/invite/cWFdnHCaAd">Discord</a> | <a href="https://www.facebook.com/profile.php?id=61566167991648&amp;mibextid=LQQJ4d">Facebook</a> | <a href="https://zealy.io/cw/iai/questboard">QuestsFullname</a>`;
 
                 try {
                     // Send the first message (Welcome Message)
