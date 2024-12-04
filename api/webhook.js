@@ -21,7 +21,7 @@ const gameName = "testiaigame"; // Replace with your game's short name
 const gameUrl = `https://testi-ai-game.vercel.app/index.html?cache_bust=${Date.now()}`;
 
 const imageUrl = "https://imgur.com/ZGgcA9c";// url images
-const gameImageUrl = "https://imgur.com/a/iaigamelogo-cy4PJvU";
+const announceimageUrl = "https://imgur.com/a/xBPobO0";
 
 const botUsername = 'testiAIGame_bot';
 
@@ -143,7 +143,18 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
 *Ready to play\\?* Hit "/testgame" and start earning\\! 🔥`;
 
                 // Announcement message to be sent separately
-                const announcementMessage = `Important Announcement`;
+                const announcementMessage = `🌟 Congratulations to the Winners of iAI Robot Game Prototype Phase I\\! 🌟
+
+🎉 A big round of applause to our Top 10 players on the leaderboard who showcased exceptional skills and strategy\\! 🏆 You’ve won a share of the $200 USDT Prize Pool!
+
+📩 Winners, please DM our admin via RAKIB | iAI to share your details before 15 Dec 2024\\.
+*Late claims will not be accepted*\\.
+Prizes are distributed according to the T&C of the project\\. 
+
+🚀 Thank you to all participants for making this phase a huge success\\! Stay tuned for more exciting challenges and rewards coming your way\\.
+———————————— 
+🤖 iAI – Where AI, Web3, and sustainability meet to create smarter, greener solutions for the future\\! 
+Telegram | X | Discord | Facebook | QuestsFullname`;
 
                 try {
                     // Send the first message (Welcome Message)
@@ -153,6 +164,7 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
                     // Check if the announcement has been sent already
                     if (!announcementSent) {
                         // Send the second message (Announcement)
+                        await bot.sendPhoto(chatId, announceimageUrl);
                         await bot.sendMessage(chatId, announcementMessage, { parse_mode: 'MarkdownV2' });
 
                         // Update the flag to mark the announcement as sent
