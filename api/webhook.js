@@ -140,6 +140,8 @@ Thank you for playing and being part of this journey. We hope you enjoyed it! St
                     // Send the welcome image with a caption
                     await bot.sendPhoto(chatId, imageUrl);
                     await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'MarkdownV2' });
+                     // Send the second message (Announcement)
+                    await bot.sendMessage(chatId, announcementMessage, { parse_mode: 'MarkdownV2' });
                 } catch (error) {
                     console.error("Error sending welcome message:", error);
                 }
