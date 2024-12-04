@@ -1,4 +1,5 @@
 const TelegramBot = require("node-telegram-bot-api");
+const fs = require("fs");
 
 const TOKEN = "7784233435:AAElh1jUghg5Nbuh22mprl1xPq8BvTYzTQg";
 const gameName = "testiaigame"; // Replace with your game's short name
@@ -13,12 +14,13 @@ const botUsername = 'testiAIGame_bot';
 
 const bot = new TelegramBot(TOKEN, { polling: false });
 
-// const currentUserId = telegramUserId;
-// const storedUserId = localStorage.getItem('user_id');
-// if (storedUserId !== currentUserId) {
-//     localStorage.clear();
-//     localStorage.setItem('user_id', currentUserId);
-// }
+let userChatIds = [];
+const chatIdsFilePath = './chat_ids.json'; // Path to save chat IDs
+
+// Load chat IDs from the JSON file (if it exists)
+if (fs.existsSync(chatIdsFilePath)) {
+    userChatIds = JSON.parse(fs.readFileSync(chatIdsFilePath));
+}
 
 module.exports = async (req, res) => {
     if (req.method === 'POST') {
@@ -50,22 +52,22 @@ module.exports = async (req, res) => {
             //});
             //}
 
-             if (update.message && (update.message.text === '/help')){
-                 const chatId = update.message.chat.id;
-                 const option = {
-                     reply_markup: {
-                         keyboard: [
-                             [{ text: '1' }],
-                             [{ text: '2' }],
-                             [{ text: '3' }],
-                             [{ text: '4' }]
-                         ],
-                         resize_keyboard: true, // Adjusts the keyboard to the optimal size
-                         one_time_keyboard: true // Hides the keyboard after a button is pressed
-                 }
-             };
-             await bot.sendMessage(chatId, `What can i helps you? .`, option);
-         }
+            if (update.message && (update.message.text === '/help')) {
+                const chatId = update.message.chat.id;
+                const option = {
+                    reply_markup: {
+                        keyboard: [
+                            [{ text: '1' }],
+                            [{ text: '2' }],
+                            [{ text: '3' }],
+                            [{ text: '4' }]
+                        ],
+                        resize_keyboard: true, // Adjusts the keyboard to the optimal size
+                        one_time_keyboard: true // Hides the keyboard after a button is pressed
+                    }
+                };
+                await bot.sendMessage(chatId, `What can i helps you? .`, option);
+            }
 
             // Handle responses after clicking buttons
             bot.on('message', (message) => {
@@ -118,6 +120,12 @@ module.exports = async (req, res) => {
                 const chatId = update.message.chat.id;
                 const firstName = update.message.from.first_name;
 
+                // Store chat ID if it's new
+                if (!userChatIds.includes(chatId)) {
+                    userChatIds.push(chatId);
+                    fs.writeFileSync(chatIdsFilePath, JSON.stringify(userChatIds)); // Save chat IDs to file
+                }
+
                 // Escape necessary characters for MarkdownV2
                 const welcomeMessage = `🎮 *Welcome to the iAI Robot Game\\!* 🚀
 A fun Telegram game where you collect iAI tokens, upgrade your strategy, and compete for rewards\\! 💰
@@ -167,4 +175,18 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
         res.status(405).send('Method Not Allowed');
     }
 };
+
+// Function to send a one-time game closure announcement to all saved users
+async function sendGameClosureAnnouncement() {
+    const closureMessage = `🚨 *Important Announcement* 🚨`;
+
+    // Send the announcement to all stored chat IDs
+    for (let chatId of userChatIds) {
+        try {
+            await bot.sendMessage(chatId, closureMessage);
+        } catch (error) {
+            console.error(`Failed to send closure announcement to chatId ${chatId}:`, error);
+        }
+    }
+}
 
