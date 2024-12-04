@@ -1,5 +1,4 @@
 const TelegramBot = require("node-telegram-bot-api");
-const fs = require("fs");
 
 const TOKEN = "7784233435:AAElh1jUghg5Nbuh22mprl1xPq8BvTYzTQg";
 const gameName = "testiaigame"; // Replace with your game's short name
@@ -13,14 +12,6 @@ const gameImageUrl = "https://imgur.com/a/iaigamelogo-cy4PJvU";
 const botUsername = 'testiAIGame_bot';
 
 const bot = new TelegramBot(TOKEN, { polling: false });
-
-let userChatIds = [];
-const chatIdsFilePath = './chat_ids.json'; // Path to save chat IDs
-
-// Load chat IDs from the JSON file (if it exists)
-if (fs.existsSync(chatIdsFilePath)) {
-    userChatIds = JSON.parse(fs.readFileSync(chatIdsFilePath));
-}
 
 module.exports = async (req, res) => {
     if (req.method === 'POST') {
@@ -120,12 +111,6 @@ module.exports = async (req, res) => {
                 const chatId = update.message.chat.id;
                 const firstName = update.message.from.first_name;
 
-                // Store chat ID if it's new
-                if (!userChatIds.includes(chatId)) {
-                    userChatIds.push(chatId);
-                    fs.writeFileSync(chatIdsFilePath, JSON.stringify(userChatIds)); // Save chat IDs to file
-                }
-
                 // Escape necessary characters for MarkdownV2
                 const welcomeMessage = `🎮 *Welcome to the iAI Robot Game\\!* 🚀
 A fun Telegram game where you collect iAI tokens, upgrade your strategy, and compete for rewards\\! 💰
@@ -142,6 +127,14 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
 🏆 *Top 10* leaderboard winners share a *$3,000 USDT Prize Pool\\!*
 
 *Ready to play?* Hit "/testgame" and start earning\\! 🔥`;
+
+                // Announcement message to be sent separately
+                const announcementMessage = `📣 *Important Announcement* 📣
+
+The iAI Robot Game is now CLOSED! 🎮  
+Thank you for playing and being part of this journey. We hope you enjoyed it! Stay tuned for future updates and more exciting projects. 🚀
+
+✨ Your adventure doesn't end here! ✨`;
 
                 try {
                     // Send the welcome image with a caption
@@ -175,18 +168,3 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
         res.status(405).send('Method Not Allowed');
     }
 };
-
-// Function to send a one-time game closure announcement to all saved users
-async function sendGameClosureAnnouncement() {
-    const closureMessage = `🚨 *Important Announcement* 🚨`;
-
-    // Send the announcement to all stored chat IDs
-    for (let chatId of userChatIds) {
-        try {
-            await bot.sendMessage(chatId, closureMessage);
-        } catch (error) {
-            console.error(`Failed to send closure announcement to chatId ${chatId}:`, error);
-        }
-    }
-}
-
