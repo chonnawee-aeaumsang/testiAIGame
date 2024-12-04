@@ -106,27 +106,27 @@ module.exports = async (req, res) => {
                 });
             }
 
-            // Handle /start
+            // Handle /teststart
             if (update.message && update.message.text === '/teststart') {
                 const chatId = update.message.chat.id;
                 const firstName = update.message.from.first_name;
 
                 // Escape necessary characters for MarkdownV2
-                const welcomeMessage = `🎮 *Welcome to the iAI Robot Game\\!* 🚀
-A fun Telegram game where you collect iAI tokens, upgrade your strategy, and compete for rewards\\! 💰
+                const welcomeMessage = `🎮 *Welcome to the iAI Robot Game!* 🚀
+A fun Telegram game where you collect iAI tokens, upgrade your strategy, and compete for rewards! 💰
 
 *How to Play*  
-🕹 *Swipe & Collect\\:* Start with 1,000 energy units\\. Each swipe earns you iAI coins\\!  
-⚡️ *Upgrade Your Core\\:* Boost your energy for higher earnings\\.  
-🏆 *Leaderboard\\:* Climb to the top for big rewards\\!  
-🎯 *Daily Missions\\:* Complete tasks for bonus coins\\.
+🕹 *Swipe & Collect:* Start with 1,000 energy units. Each swipe earns you iAI coins!  
+⚡️ *Upgrade Your Core:* Boost your energy for higher earnings.  
+🏆 *Leaderboard:* Climb to the top for big rewards!  
+🎯 *Daily Missions:* Complete tasks for bonus coins.
 
 *Rewards*
-💰 Earn tokens every play 
+💰 Earn tokens every play  
 🎁 Complete quests for extra rewards  
-🏆 *Top 10* leaderboard winners share a *$3,000 USDT Prize Pool\\!*
+🏆 *Top 10* leaderboard winners share a *$3,000 USDT Prize Pool!*
 
-*Ready to play?* Hit "/testgame" and start earning\\! 🔥`;
+*Ready to play?* Hit "/testgame" and start earning! 🔥`;
 
                 // Announcement message to be sent separately
                 const announcementMessage = `📣 *Important Announcement* 📣
@@ -137,16 +137,15 @@ Thank you for playing and being part of this journey. We hope you enjoyed it! St
 ✨ Your adventure doesn't end here! ✨`;
 
                 try {
-                    // Send the welcome image with a caption
+                    // Send the first message (Welcome Message)
                     await bot.sendPhoto(chatId, imageUrl);
                     await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'MarkdownV2' });
-                     // Send the second message (Announcement)
+
+                    // Send the second message (Announcement)
                     await bot.sendMessage(chatId, announcementMessage, { parse_mode: 'MarkdownV2' });
                 } catch (error) {
-                    console.error("Error sending welcome message:", error);
+                    console.error("Error sending messages:", error);
                 }
-
-                //await bot.sendGame(update.message.from.id, gameName);
             }
 
             // Handle callback query for the Play button
