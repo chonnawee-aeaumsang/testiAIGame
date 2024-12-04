@@ -145,11 +145,11 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
                 // Announcement message to be sent separately
                 const announcementMessage = `🌟 Congratulations to the Winners of iAI Robot Game Prototype Phase I\\! 🌟
 
-🎉 A big round of applause to our Top 10 players on the leaderboard who showcased exceptional skills and strategy\\! 🏆 You’ve won a share of the $200 USDT Prize Pool!
+🎉 A big round of applause to our Top 10 players on the leaderboard who showcased exceptional skills and strategy\\! 🏆 You’ve won a share of the \\$200 USDT Prize Pool\\!
 
 📩 Winners, please DM our admin via RAKIB | iAI to share your details before 15 Dec 2024\\.
 *Late claims will not be accepted*\\.
-Prizes are distributed according to the T&C of the project\\. 
+Prizes are distributed according to the T\\&C of the project\\.
 
 🚀 Thank you to all participants for making this phase a huge success\\! Stay tuned for more exciting challenges and rewards coming your way\\.
 ———————————— 
