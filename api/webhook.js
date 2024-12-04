@@ -159,13 +159,13 @@ Telegram | X | Discord | Facebook | QuestsFullname`;
                 try {
                     // Send the first message (Welcome Message)
                     await bot.sendPhoto(chatId, imageUrl);
-                    await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'HTML' });
+                    await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'MarkdownV2' });
 
                     // Check if the announcement has been sent already
                     if (!announcementSent) {
                         // Send the second message (Announcement)
                         await bot.sendPhoto(chatId, announceimageUrl);
-                        await bot.sendMessage(chatId, announcementMessage, { parse_mode: 'MarkdownV2' });
+                        await bot.sendMessage(chatId, announcementMessage, { parse_mode: 'HTML' });
 
                         // Update the flag to mark the announcement as sent
                         announcementSent = true;
