@@ -126,7 +126,7 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
 🎁 Complete quests for extra rewards  
 🏆 *Top 10* leaderboard winners share a *\\$3,000 USDT Prize Pool\\!*
 
-*Ready to play\?* Hit "/testgame" and start earning\! 🔥`;
+*Ready to play\\?* Hit "/testgame" and start earning\\! 🔥`;
 
                 // Announcement message to be sent separately
                 const announcementMessage = `📣 *Important Announcement* 📣
