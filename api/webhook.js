@@ -6,7 +6,7 @@ const path = require('path');
 // Paths
 const announcementSentFile = path.join(__dirname, 'announcement_sent.json');
 
-// Track whether announcement has been sent
+// Check if the announcement has been sent
 let announcementSent = false;
 if (fs.existsSync(announcementSentFile)) {
     const data = fs.readFileSync(announcementSentFile);
@@ -160,7 +160,7 @@ Telegram | X | Discord | Facebook | QuestsFullname`;
                     // Send the first message (Welcome Message)
                     await bot.sendPhoto(chatId, imageUrl);
                     await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'MarkdownV2' });
-
+                    
                     // Check if the announcement has been sent already
                     if (!announcementSent) {
                         // Send the second message (Announcement)
