@@ -143,23 +143,23 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
 *Ready to play\\?* Hit "/testgame" and start earning\\! 🔥`;
 
                 // Announcement message to be sent separately
-                const announcementMessage = `🌟 Congratulations to the Winners of iAI Robot Game Prototype Phase I\\! 🌟
+                const announcementMessage = `🌟 Congratulations to the Winners of iAI Robot Game Prototype Phase I! 🌟
 
-🎉 A big round of applause to our Top 10 players on the leaderboard who showcased exceptional skills and strategy\\! 🏆 You’ve won a share of the \\$200 USDT Prize Pool\\!
+🎉 A big round of applause to our Top 10 players on the leaderboard who showcased exceptional skills and strategy! 🏆 You’ve won a share of the $200 USDT Prize Pool!
 
-📩 Winners, please DM our admin via RAKIB | iAI to share your details before 15 Dec 2024\\.
-*Late claims will not be accepted*\\.
-Prizes are distributed according to the T\\&C of the project\\.
+📩 Winners, please DM our admin via RAKIB | iAI to share your details before 15 Dec 2024.
+<strong>Late claims will not be accepted</strong>.
+Prizes are distributed according to the T&amp;C of the project.
 
-🚀 Thank you to all participants for making this phase a huge success\\! Stay tuned for more exciting challenges and rewards coming your way\\.
+🚀 Thank you to all participants for making this phase a huge success! Stay tuned for more exciting challenges and rewards coming your way.
 ———————————— 
-🤖 iAI – Where AI, Web3, and sustainability meet to create smarter, greener solutions for the future\\! 
+🤖 iAI – Where AI, Web3, and sustainability meet to create smarter, greener solutions for the future! 
 Telegram | X | Discord | Facebook | QuestsFullname`;
 
                 try {
                     // Send the first message (Welcome Message)
                     await bot.sendPhoto(chatId, imageUrl);
-                    await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'MarkdownV2' });
+                    await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'HTML' });
 
                     // Check if the announcement has been sent already
                     if (!announcementSent) {
