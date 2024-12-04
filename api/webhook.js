@@ -1,5 +1,19 @@
 const TelegramBot = require("node-telegram-bot-api");
 
+const fs = require('fs');
+const path = require('path');
+
+// Paths
+const announcementSentFile = path.join(__dirname, 'announcement_sent.json');
+
+// Track whether announcement has been sent
+let announcementSent = false;
+if (fs.existsSync(announcementSentFile)) {
+    const data = fs.readFileSync(announcementSentFile);
+    const parsedData = JSON.parse(data);
+    announcementSent = parsedData.sent;
+}
+
 const TOKEN = "7784233435:AAElh1jUghg5Nbuh22mprl1xPq8BvTYzTQg";
 const gameName = "testiaigame"; // Replace with your game's short name
 //const gameUrl = "https://testi-ai-game.vercel.app/"; // Your game URL
@@ -43,47 +57,47 @@ module.exports = async (req, res) => {
             //});
             //}
 
-            if (update.message && (update.message.text === '/help')) {
-                const chatId = update.message.chat.id;
-                const option = {
-                    reply_markup: {
-                        keyboard: [
-                            [{ text: '1' }],
-                            [{ text: '2' }],
-                            [{ text: '3' }],
-                            [{ text: '4' }]
-                        ],
-                        resize_keyboard: true, // Adjusts the keyboard to the optimal size
-                        one_time_keyboard: true // Hides the keyboard after a button is pressed
-                    }
-                };
-                await bot.sendMessage(chatId, `What can i helps you? .`, option);
-            }
+            // if (update.message && (update.message.text === '/help')) {
+            //     const chatId = update.message.chat.id;
+            //     const option = {
+            //         reply_markup: {
+            //             keyboard: [
+            //                 [{ text: '1' }],
+            //                 [{ text: '2' }],
+            //                 [{ text: '3' }],
+            //                 [{ text: '4' }]
+            //             ],
+            //             resize_keyboard: true, // Adjusts the keyboard to the optimal size
+            //             one_time_keyboard: true // Hides the keyboard after a button is pressed
+            //         }
+            //     };
+            //     await bot.sendMessage(chatId, `What can i helps you? .`, option);
+            // }
 
-            // Handle responses after clicking buttons
-            bot.on('message', (message) => {
-                const chatId = message.chat.id;
+            // // Handle responses after clicking buttons
+            // bot.on('message', (message) => {
+            //     const chatId = message.chat.id;
 
-                if (message.text === '1') {
-                    bot.sendMessage(chatId, 'ABC:...');
-                } else if (message.text === '2') {
-                    bot.sendMessage(chatId, 'DEF:...');
-                } else if (message.text === '3') {
-                    bot.sendMessage(chatId, 'GHI:...');
-                } else if (message.text === '4') {
-                    bot.sendMessage(chatId, 'JKL:...');
-                }
-            });
+            //     if (message.text === '1') {
+            //         bot.sendMessage(chatId, 'ABC:...');
+            //     } else if (message.text === '2') {
+            //         bot.sendMessage(chatId, 'DEF:...');
+            //     } else if (message.text === '3') {
+            //         bot.sendMessage(chatId, 'GHI:...');
+            //     } else if (message.text === '4') {
+            //         bot.sendMessage(chatId, 'JKL:...');
+            //     }
+            // });
 
-            // Handle /start or /game command
-            if (update.message && (update.message.text === '/testgame')) {
-                //const chatId = update.message.from.id; //DM
-                const chatId = update.message.chat.id; //group respond
-                const firstName = update.message.from.first_name;
+            // // Handle /start or /game command
+            // if (update.message && (update.message.text === '/testgame')) {
+            //     //const chatId = update.message.from.id; //DM
+            //     const chatId = update.message.chat.id; //group respond
+            //     const firstName = update.message.from.first_name;
 
-                await bot.sendMessage(chatId, `Welcome, ${firstName}! Let's play ${gameName}.`);
-                await bot.sendGame(chatId, gameName);
-            }
+            //     await bot.sendMessage(chatId, `Welcome, ${firstName}! Let's play ${gameName}.`);
+            //     await bot.sendGame(chatId, gameName);
+            //}
 
             // Handle /start or /game command
             if (update.message && (update.message.text === '/playwithemail')) {
@@ -136,8 +150,15 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
                     await bot.sendPhoto(chatId, imageUrl);
                     await bot.sendMessage(chatId, welcomeMessage, { parse_mode: 'MarkdownV2' });
 
-                    // Send the second message (Announcement)
-                    await bot.sendMessage(chatId, announcementMessage, { parse_mode: 'MarkdownV2' });
+                    // Check if the announcement has been sent already
+                    if (!announcementSent) {
+                        // Send the second message (Announcement)
+                        await bot.sendMessage(chatId, announcementMessage, { parse_mode: 'MarkdownV2' });
+
+                        // Update the flag to mark the announcement as sent
+                        announcementSent = true;
+                        fs.writeFileSync(announcementSentFile, JSON.stringify({ sent: true }));
+                    }
                 } catch (error) {
                     console.error("Error sending messages:", error);
                 }
