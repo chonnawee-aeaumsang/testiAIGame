@@ -129,12 +129,7 @@ A fun Telegram game where you collect iAI tokens, upgrade your strategy, and com
 *Ready to play\\?* Hit "/testgame" and start earning\\! 🔥`;
 
                 // Announcement message to be sent separately
-                const announcementMessage = `📣 *Important Announcement* 📣
-
-The iAI Robot Game is now CLOSED\\! 🎮  
-Thank you for playing and being part of this journey. We hope you enjoyed it\\! Stay tuned for future updates and more exciting projects. 🚀
-
-✨ Your adventure doesn't end here\\! ✨`;
+                const announcementMessage = `Important Announcement`;
 
                 try {
                     // Send the first message (Welcome Message)
