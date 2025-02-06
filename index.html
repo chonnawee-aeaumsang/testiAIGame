@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<input type="text" id="webInput" style="position: absolute; top: 50px; left: 50px; z-index: 1000;" oninput="SendInputToUnity(this.value)">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Unity WebGL Player | iAI Clicker</title>
-  <link rel="shortcut icon" href="TemplateData/favicon.ico?id=1.5.4">
-  <link rel="stylesheet" href="TemplateData/style.css?id=1.5.4">
-  <link rel="manifest" href="manifest.webmanifest?id=1.5.4">
+  <link rel="shortcut icon" href="TemplateData/favicon.ico?id=1.5.5">
+  <link rel="stylesheet" href="TemplateData/style.css?id=1.5.5">
+  <link rel="manifest" href="manifest.webmanifest?id=1.5.5">
   <script src="https://telegram.org/js/telegram-web-app.js"> onload = "onTelegramWebAppLoaded()"</script>
-  <script src="custom.js"></script>
 
   <script>
     function onTelegramWebAppLoaded() {
@@ -75,15 +73,15 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/iai-input.2.loader.js?id=1.5.4";
+    var loaderUrl = buildUrl + "/iAI-1.5.5.loader.js?id=1.5.5";
     var config = {
-      dataUrl: buildUrl + "/iai-input.2.data?id=1.5.4",
-      frameworkUrl: buildUrl + "/iai-input.2.framework.js?id=1.5.4",
-        codeUrl: buildUrl + "/iai-input.2.wasm?id=1.5.4",
+      dataUrl: buildUrl + "/iAI-1.5.5.data?id=1.5.5",
+      frameworkUrl: buildUrl + "/iAI-1.5.5.framework.js?id=1.5.5",
+        codeUrl: buildUrl + "/iAI-1.5.5.wasm?id=1.5.5",
         streamingAssetsUrl: "StreamingAssets",
       companyName: "iAI",
     productName: "iAI Clicker",
-    productVersion: "1.5.4",
+    productVersion: "1.5.5",
     showBanner: unityShowBanner,
       };
 
