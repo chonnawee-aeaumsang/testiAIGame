@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us">
+<input type="text" id="webInput" style="position: absolute; top: 50px; left: 50px; z-index: 1000;" oninput="SendInputToUnity(this.value)">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Unity WebGL Player | iAI Clicker</title>
-  <link rel="shortcut icon" href="TemplateData/favicon.ico?id=1.4.8">
-  <link rel="stylesheet" href="TemplateData/style.css?id=1.4.8">
-  <link rel="manifest" href="manifest.webmanifest?id=1.4.8">
+  <link rel="shortcut icon" href="TemplateData/favicon.ico?id=1.5.4">
+  <link rel="stylesheet" href="TemplateData/style.css?id=1.5.4">
+  <link rel="manifest" href="manifest.webmanifest?id=1.5.4">
   <script src="https://telegram.org/js/telegram-web-app.js"> onload = "onTelegramWebAppLoaded()"</script>
+  <script src="custom.js"></script>
+
   <script>
     function onTelegramWebAppLoaded() {
       // The Telegram Web App API is now ready to be used
@@ -72,15 +75,15 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/iai.4.8template.loader.js?id=1.4.8";
+    var loaderUrl = buildUrl + "/iAI-1.5.4.loader.js?id=1.5.4";
     var config = {
-      dataUrl: buildUrl + "/iai.4.8template.data?id=1.4.8",
-      frameworkUrl: buildUrl + "/iai.4.8template.framework.js?id=1.4.8",
-        codeUrl: buildUrl + "/iai.4.8template.wasm?id=1.4.8",
+      dataUrl: buildUrl + "/iAI-1.5.4.data?id=1.5.4",
+      frameworkUrl: buildUrl + "/iAI-1.5.4.framework.js?id=1.5.4",
+        codeUrl: buildUrl + "/iAI-1.5.4.wasm?id=1.5.4",
         streamingAssetsUrl: "StreamingAssets",
       companyName: "iAI",
     productName: "iAI Clicker",
-    productVersion: "1.4.8",
+    productVersion: "1.5.4",
     showBanner: unityShowBanner,
       };
 
@@ -104,7 +107,7 @@
     var script = document.createElement("script");
     script.src = loaderUrl;
     script.onload = () => {
-         createUnityInstance(canvas, config, (progress) => {
+      createUnityInstance(canvas, config, (progress) => {
            progressBarFull.style.width = 100 * progress + "%";
          }).then((unityInstance) => {
            canvasiai.style.display= "none";
